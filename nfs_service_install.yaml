@@ -1,0 +1,14 @@
+---
+- name: We need to install NFS Utilities
+  hosts: webserver
+  become: yes
+  tasks:
+  - name: Ensure that nfs utility is installed
+    dnf:
+      name: nfs-utils
+      state: present
+  - name: Making sure that nfs service is enabled
+    service:
+          name: nfs-server
+          state: started
+          enabled: true
